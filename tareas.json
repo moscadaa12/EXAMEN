@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "titulo": "EJERICIOS CS",
+    "materia": "CONTRUCCION DE SOTFARE",
+    "fecha_limite": "09/09/2025",
+    "prioridad": "Alta",
+    "descripcion": "",
+    "completada": true
+  }
+]
