@@ -1,2 +1,0 @@
-# EXAMEN
-Consolidado 1
