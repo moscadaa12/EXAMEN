@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstudIA - Proceso de Design Thinking</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .phase {
+            position: relative;
+            width: 50%;
+            padding: 1rem 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .phase.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .phase-left {
+            left: 0;
+        }
+        
+        .phase-right {
+            left: 50%;
+        }
+        
+        .phase-content {
+            padding: 1.5rem;
+        }
+        
+        .phase-number {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .phase-left .phase-number {
+            right: -20px;
+        }
+        
+        .phase-right .phase-number {
+            left: -20px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 1rem 0 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .evidence-box, .user-box, .requirements-box {
+            background-color: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 200px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .phase {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0;
+            }
+            
+            .phase-left, .phase-right {
+                left: 0;
+            }
+            
+            .phase-left .phase-number, .phase-right .phase-number {
+                left: 20px;
+            }
+        }
+        
+        .highlight {
+            background-color: #fff8e1;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .code-snippet {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .tab-container {
+            margin: 1.5rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 0 0 5px 5px;
+            box-shadow: var(--shadow);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .interactive-element {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-element:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interactive-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .interactive-content {
+            display: none;
+            padding-top: 1rem;
+        }
+        
+        .interactive-element.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+        
+        .interactive-element.active .interactive-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">E</div>
+        </div>
+        <h1>EstudIA - Gestor de Tareas Académicas</h1>
+        <p class="subtitle">Proceso de Design Thinking para el desarrollo del prototipo</p>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h2>Introducción</h2>
+            <p>Este proyecto aplica la metodología de Design Thinking para desarrollar una solución al problema de gestión de tareas académicas que enfrentan los estudiantes universitarios. A continuación, se presenta el proceso completo dividido en etapas.</p>
+        </section>
+        
+        <div class="timeline">
+            <!-- Etapa 1 -->
+            <div class="phase phase-left">
+                <div class="phase-number">1</div>
+                <div class="phase-content">
+                    <h2>Empatizar y Definir</h2>
+                    <p>Comprensión del problema y necesidades del usuario objetivo.</p>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Problema Identificado</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p>Los estudiantes universitarios enfrentan múltiples responsabilidades: tareas, exámenes, proyectos y actividades extracurriculares. Un problema frecuente es el olvido de fechas de entrega y eventos importantes, lo que genera retrasos, pérdida de puntos en evaluaciones y estrés adicional.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Evidencias</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <div class="evidence-box">
+                                <p>Estudiantes muestran signos de preocupación y estrés después de haber olvidado tareas recientes.</p>
+                                <p>Experiencias personales donde frecuentemente no se percatan de tareas pendientes o foros incompletos.</p>
+                                <p>Según Casasola-Rivera: "Los factores que más destacan son la ansiedad, el estrés, el ocio, las influencias familiares, los aspectos sociodemográficos y culturales, así como la carencia de habilidades en la gestión del tiempo".</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Usuario Objetivo</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <div class="user-box">
+                                <p><strong>Edad:</strong> 18 a 30 años</p>
+                                <p><strong>Ocupación:</strong> Estudiantes universitarios de pregrado</p>
+                                <p><strong>Necesidades:</strong> Recordar entregas y organizar actividades de manera simple</p>
+                                <p><strong>Comportamiento:</strong> Usan computadora y celular a diario, pero dependen de su memoria o apuntes improvisados</p>
+                                <p><strong>Dolores:</strong> Olvidar entregas, acumular tareas de último momento, estrés y baja en el rendimiento académico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 2 -->
+            <div class="phase phase-right">
+                <div class="phase-number">2</div>
+                <div class="phase-content">
+                    <h2>Idear</h2>
+                    <p>Generación de múltiples alternativas de solución mediante lluvia de ideas.</p>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Solución Propuesta</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p>Desarrollo del Gestor de Tareas Académicas "EstudIA", una aplicación de consola en Python que permite a los estudiantes registrar, organizar y hacer seguimiento de sus tareas académicas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Requerimientos Funcionales</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <div class="requirements-box">
+                                <p>1. Registrar tareas con: título, materia, fecha límite, prioridad (Alta/Media/Baja), descripción opcional.</p>
+                                <p>2. Listar tareas (todas, por materia, filtradas por prioridad y próximas a vencer).</p>
+                                <p>3. Marcar tarea como completada / eliminar / editar.</p>
+                                <p>4. Al iniciar, mostrar recordatorio de tareas que vencen hoy o en los próximos N días.</p>
+                                <p>5. Persistencia ligera (archivo JSON local).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Restricciones</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p>Sin base de datos (solo archivos locales).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 3 -->
+            <div class="phase phase-left">
+                <div class="phase-number">3</div>
+                <div class="phase-content">
+                    <h2>Prototipar</h2>
+                    <p>Desarrollo del prototipo utilizando diferentes herramientas con IA.</p>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" onclick="openTab(event, 'vscode')">VS Code</button>
+                            <button class="tab-btn" onclick="openTab(event, 'cursor')">Cursor</button>
+                            <button class="tab-btn" onclick="openTab(event, 'replit')">Replit</button>
+                        </div>
+                        
+                        <div id="vscode" class="tab-content active">
+                            <h3>VS Code con GitHub Copilot</h3>
+                            <p>Se utilizó VS Code con GitHub Copilot para generar código asistido por IA.</p>
+                            <div class="code-snippet">
+                                # MAIN.PY - Archivo principal<br>
+                                from storage import cargar_tareas, guardar_tareas<br>
+                                from tarea import Tarea<br><br>
+                                
+                                def main():<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;tareas = cargar_tareas()<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;print("Bienvenido a EstudIA Gestor de Tareas")<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;# Menú interactivo y lógica de la aplicación<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;...
+                            </div>
+                        </div>
+                        
+                        <div id="cursor" class="tab-content">
+                            <h3>Cursor</h3>
+                            <p>Se utilizó el IDE Cursor con IA integrada para generar código Python.</p>
+                            <div class="code-snippet">
+                                # GestorTareas.py - Clase principal<br>
+                                class GestorTareas:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self):<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.tareas = []<br><br>
+                                
+                                &nbsp;&nbsp;&nbsp;&nbsp;def agregar_tarea(self, tarea):<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.tareas.append(tarea)<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.guardar_tareas()<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;...
+                            </div>
+                        </div>
+                        
+                        <div id="replit" class="tab-content">
+                            <h3>Replit</h3>
+                            <p>Se utilizó Replit con su función Ghostwriter para colaboración y generación de código.</p>
+                            <div class="code-snippet">
+                                # Dependencias usadas:<br>
+                                import json<br>
+                                import os<br>
+                                from datetime import datetime<br>
+                                from typing import List, Optional<br>
+                                from uuid import uuid4<br><br>
+                                
+                                # Modelos de datos<br>
+                                class Task:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, title: str, subject: str, due_date: str):<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.id = str(uuid4())<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.title = title<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.subject = subject<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.due_date = due_date<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 4 -->
+            <div class="phase phase-right">
+                <div class="phase-number">4</div>
+                <div class="phase-content">
+                    <h2>Testear y Presentar</h2>
+                    <p>Evaluación del prototipo y presentación de resultados.</p>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Arquitectura del Software</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p>La arquitectura implementada sigue una estructura modular orientada a objetos:</p>
+                            <ol>
+                                <li>Clase Tarea: Atributos (nombre, fecha_limite) y Métodos (mostrar tarea, verificar vencimiento)</li>
+                                <li>Módulo de gestión de tareas: Funciones para añadir, listar y eliminar tareas</li>
+                                <li>Interfaz de usuario (menú en consola): Ciclo repetitivo para registrar tareas, mostrar pendientes y salir</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">
+                            <h3>Resultados de Pruebas</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p>El prototipo fue probado por los integrantes del grupo. Las observaciones recogidas fueron:</p>
+                            <ul>
+                                <li>La interfaz en consola resultó clara y sencilla de utilizar</li>
+                                <li>La posibilidad de registrar y listar tareas de forma rápida ayudó a visualizar mejor las entregas pendientes</li>
+                                <li>Se identificó la necesidad de una funcionalidad de recordatorio automático como mejora futura</li>
+                                <li>Los usuarios valoran la simplicidad del sistema frente a la complejidad de calendarios externos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="conclusion">
+            <h2>Conclusión</h2>
+            <p>El prototipo responde de manera efectiva al problema del olvido de tareas, demostrando que incluso una solución básica puede generar un impacto positivo en la organización académica de los estudiantes. EstudIA constituye una solución estructurada y eficiente que permite a los estudiantes organizar sus responsabilidades académicas, recordar entregas, reducir el riesgo de olvidar actividades importantes y mejorar la gestión de su tiempo.</p>
+        </section>
+        
+        <section class="team">
+            <h2>Equipo de Desarrollo</h2>
+            <p class="subtitle">"Dibujitos" - Construcción de Software - NRC: 59116</p>
+            
+            <div class="team-section">
+                <div class="team-member">
+                    <div class="member-avatar">B</div>
+                    <h3>Bruce Saul</h3>
+                    <p>Barrios Morales</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">O</div>
+                    <h3>Oscar Ailthoon</h3>
+                    <p>Espinoza Nieto (SM)</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">J</div>
+                    <h3>Juan Carlos</h3>
+                    <p>Lope Pari</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">E</div>
+                    <h3>Emerson</h3>
+                    <p>Mamani Ccayavillea</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">J</div>
+                    <h3>Jodi</h3>
+                    <p>Cordova Sucapuca</p>
+                </div>
+            </div>
+            
+            <p>Docente: Ing. Hugo Espetia Huamanga</p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Universidad Continental - Cusco, Perú - 2025</p>
+        <p>"Año de la recuperación y consolidación de la economía peruana"</p>
+    </footer>
+
+    <script>
+        // Función para detectar cuando los elementos están en el viewport
+        function checkVisibility() {
+            const phases = document.querySelectorAll('.phase');
+            
+            phases.forEach(phase => {
+                const position = phase.getBoundingClientRect();
+                
+                // Si el elemento está en el viewport
+                if(position.top < window.innerHeight - 100) {
+                    phase.classList.add('visible');
+                }
+            });
+        }
+        
+        // Ejecutar al cargar y al hacer scroll
+        window.addEventListener('load', checkVisibility);
+        window.addEventListener('scroll', checkVisibility);
+        
+        // Funcionalidad para las pestañas
+        function openTab(evt, tabName) {
+            // Ocultar todos los contenidos de pestañas
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Desactivar todos los botones de pestañas
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Mostrar la pestaña actual y activar el botón
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // Funcionalidad para elementos interactivos
+        const interactiveElements = document.querySelectorAll('.interactive-element');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('click', () => {
+                element.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
