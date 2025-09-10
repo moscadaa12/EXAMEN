@@ -1,0 +1,74 @@
+[
+  {
+    "titulo": "Ensayo sobre Inteligencia Artificial",
+    "materia": "Inteligencia Artificial",
+    "fecha_limite": "2025-09-10T19:26:32.270749",
+    "prioridad": "Alta",
+    "descripcion": "Ensayo de 5 páginas sobre el impacto de la IA en la sociedad moderna",
+    "completada": false,
+    "fecha_creacion": "2025-09-09T19:26:32.270796"
+  },
+  {
+    "titulo": "Proyecto de Base de Datos",
+    "materia": "Base de Datos",
+    "fecha_limite": "2025-09-12T19:26:32.270749",
+    "prioridad": "Alta",
+    "descripcion": "Diseñar e implementar una base de datos para un sistema de biblioteca",
+    "completada": false,
+    "fecha_creacion": "2025-09-09T19:26:32.271990"
+  },
+  {
+    "titulo": "Examen de Cálculo Diferencial",
+    "materia": "Cálculo Diferencial",
+    "fecha_limite": "2025-09-16T19:26:32.270749",
+    "prioridad": "Media",
+    "descripcion": "Examen parcial sobre derivadas y aplicaciones",
+    "completada": false,
+    "fecha_creacion": "2025-09-09T19:26:32.272457"
+  },
+  {
+    "titulo": "Presentación de Historia del Arte",
+    "materia": "Historia del Arte",
+    "fecha_limite": "2025-09-23T19:26:32.270749",
+    "prioridad": "Baja",
+    "descripcion": "Presentación sobre el Renacimiento italiano",
+    "completada": false,
+    "fecha_creacion": "2025-09-09T19:26:32.272764"
+  },
+  {
+    "titulo": "Laboratorio de Química Orgánica",
+    "materia": "Química Orgánica",
+    "fecha_limite": "2025-09-08T19:26:32.270749",
+    "prioridad": "Alta",
+    "descripcion": "Reporte de laboratorio sobre síntesis de compuestos orgánicos",
+    "completada": false,
+    "fecha_creacion": "2025-09-09T19:26:32.273160"
+  },
+  {
+    "titulo": "Tarea de Programación Web",
+    "materia": "Programación Web",
+    "fecha_limite": "2025-09-12T19:26:32.270749",
+    "prioridad": "Media",
+    "descripcion": "Crear una página web responsiva usando HTML, CSS y JavaScript",
+    "completada": true,
+    "fecha_creacion": "2025-09-09T19:26:32.274158"
+  },
+  {
+    "titulo": "Lectura de Filosofía",
+    "materia": "Filosofía",
+    "fecha_limite": "2025-09-16T19:26:32.270749",
+    "prioridad": "Baja",
+    "descripcion": "Leer y resumir 'El mundo de Sofía' - Capítulos 1-5",
+    "completada": true,
+    "fecha_creacion": "2025-09-09T19:26:32.274592"
+  },
+  {
+    "titulo": "Proyecto de Investigación",
+    "materia": "Metodología de la Investigación",
+    "fecha_limite": "2025-09-23T19:26:32.270749",
+    "prioridad": "Alta",
+    "descripcion": "Proyecto final: Investigación sobre el impacto de las redes sociales en estudiantes universitarios",
+    "completada": false,
+    "fecha_creacion": "2025-09-09T19:26:32.275081"
+  }
+]

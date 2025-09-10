@@ -1,0 +1,48 @@
+🎓 GESTOR DE TAREAS ACADÉMICAS "ESTUDIA" - INSTRUCCIONES RÁPIDAS
+================================================================
+
+🚀 INICIO RÁPIDO:
+1. Ejecutar: python main.py
+2. Seguir las instrucciones en pantalla
+3. ¡Listo para usar!
+
+📋 FUNCIONES PRINCIPALES:
+• Agregar tareas con título, materia, fecha y prioridad
+• Ver recordatorios de tareas próximas a vencer
+• Filtrar tareas por materia, prioridad o estado
+• Marcar tareas como completadas
+• Editar o eliminar tareas existentes
+• Ver estadísticas de progreso
+• Exportar reportes a archivos de texto
+
+🎯 DATOS DE EJEMPLO:
+Para probar la aplicación con datos de ejemplo:
+1. Ejecutar: python ejemplo_datos.py
+2. Luego ejecutar: python main.py
+3. La aplicación cargará automáticamente las tareas de ejemplo
+
+📁 ARCHIVOS DEL PROYECTO:
+• main.py - Punto de entrada principal
+• tarea.py - Clase para representar tareas
+• gestor_tareas.py - Lógica de gestión y persistencia
+• interfaz_usuario.py - Interfaz de usuario interactiva
+• ejemplo_datos.py - Creador de datos de ejemplo
+• README.md - Documentación completa
+
+💾 PERSISTENCIA:
+• Los datos se guardan automáticamente en archivos JSON
+• Archivo por defecto: tareas_estudia.json
+• Archivo de ejemplo: tareas_ejemplo.json
+• No se requiere base de datos externa
+
+🔧 REQUISITOS:
+• Python 3.6 o superior
+• Módulos estándar de Python (json, datetime, os, sys, typing)
+• Sistema operativo: Windows, macOS o Linux
+
+❓ AYUDA:
+• Lee el README.md para documentación completa
+• Los errores se muestran con mensajes descriptivos
+• Usa Ctrl+C para salir en cualquier momento
+
+🎓 ¡Disfruta organizando tu vida académica con EstudIA!

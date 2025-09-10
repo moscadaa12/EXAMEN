@@ -1,0 +1,14 @@
+=== GESTOR DE TAREAS ACADÉMICAS ESTUDIA ===
+Fecha de exportación: 09/09/2025 19:31
+
+ESTADÍSTICAS:
+Total de tareas: 1
+Completadas: 0
+Pendientes: 1
+Vencidas: 0
+Urgentes (próximos 3 días): 1
+
+TAREAS PENDIENTES POR PRIORIDAD:
+
+Media:
+  - Hola mundo (Fundamentos de Programación) - 12/09/2025
